@@ -1,0 +1,316 @@
+﻿
+@using HomeWebsite.Models.Entities;
+
+@{
+    
+    KonsumatorWithPicture konsumator = (KonsumatorWithPicture)ViewBag.Data;
+    List<Prone> pronat = ViewBag.Properties;
+    string defaultSource = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png";
+    string source = konsumator.picture.profilePicPath;
+    if (source != null)
+    {
+        defaultSource = source;
+    }
+    ViewBag.Title = "UserProfile";
+}
+
+<div class="container">
+    <div id="message" style="display:none;"></div>
+</div>
+
+<h2>UserProfile</h2>
+
+
+
+<hr>
+<div class="container bootstrap snippet">
+    <div class="row">
+        <div class="col-sm-10"><h1>@konsumator.konsumator.UserName</h1></div>
+        <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-thumbnail" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <!--left col-->
+           
+            <div class="text-center">
+                <img src="@Url.Content(defaultSource)" class="avatar img-circle img-thumbnail" style="width:50%;" alt="avatar">
+                @using (Html.BeginForm("UploadPicture", "Profiles", FormMethod.Post, new { enctype = "multipart/form-data", id = "formData" }))
+                        {
+                    <table>
+                        <tr>
+                            <td>
+                                <h6>Upload a different photo...</h6>
+                                <input type="file" id="file" class="text-center center-block file-upload" multiple>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <br />
+                                <button id="btnPostImage" class="btn btn-info" >Upload</button>
+                            </td>
+                            
+                        </tr>
+                    </table>
+                }
+
+            </div></hr><br>
+
+      <div class="panel panel-default">
+                <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
+                <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
+            </div>
+
+
+            <ul class="list-group">
+                <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Social Media</div>
+                <div class="panel-body">
+                    <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
+                </div>
+            </div>
+
+        </div><!--/col-3-->
+        <div class="col-sm-9">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                <li><a data-toggle="tab" href="#messages">Update Info</a></li>
+                <li><a data-toggle="tab" href="#settings">Pronat e mia</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                    <hr>
+                    <form class="form" action="##" method="post" id="registrationForm">
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="first_name"><h4>First name</h4></label>
+                                <p>@konsumator.konsumator.Emer</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="last_name"><h4>Last name</h4></label>
+                                <p>@konsumator.konsumator.Mbiemer</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="phone"><h4>Phone</h4></label>
+                                <p>@konsumator.konsumator.Telefon</p>
+                            </div>
+                        </div>
+
+                       
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Email</h4></label>
+                                @konsumator.konsumator.Email
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="password"><h4>Password</h4></label>
+                                @konsumator.konsumator.Password
+                            </div>
+                        </div>
+                        
+                        
+                    </form>
+
+                    <hr>
+
+                </div><!--/tab-pane-->
+                <div class="tab-pane" id="messages">
+
+                    <h2></h2>
+
+                    <hr>
+                    <form class="form" action="##" method="post" id="registrationForm">
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="first_name"><h4>First name</h4></label>
+                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="last_name"><h4>Last name</h4></label>
+                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="phone"><h4>Phone</h4></label>
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
+                            </div>
+                        </div>
+
+                        
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Email</h4></label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                            </div>
+                        </div>
+                       
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="password"><h4>Password</h4></label>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="password2"><h4>Verify</h4></label>
+                                <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <br>
+                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div><!--/tab-pane-->
+                <div class="tab-pane" id="settings">
+
+
+                    <hr>
+                    <div class="row">
+                        @{string tempSrc = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";}
+                        @foreach (var item in pronat)
+                        {
+                            if (item.proneComp.picturePath != null)
+                            {
+                                tempSrc = item.proneComp.picturePath;
+                            }
+                            <div class="col-md-3">
+                                <div class="thumbnail card">
+
+                                    <div class="img-event">
+                                        <img class="group list-group-image" src="@Url.Content(tempSrc)" alt="" style="width:100%; height:150px;" />
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class=" col-md-12">
+                                            <table class="table">
+                                                <tr>
+                                                    <td>
+                                                        <div class="well well-sm"><h4>@item.proneComp.ProneTitull</h4></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>Cmimi: @item.proneComp.pricePerMonth $   </p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>Siperfaqja: @item.proneComp.ProneSiperfaqe m2 </p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        @{var idItem = item.proneComp.IdProne;}
+                                                        @using (Html.BeginForm("AddPropertyPicture", "ProneInformation", FormMethod.Post))
+                                                        {
+                                                            <input type="hidden" id="id" name="id" value="@idItem">
+                                                            <button class="btn btn-info" type="submit">Shto foto profili</button>
+                                                        }
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        @using (Html.BeginForm("ImageAdd", "Album", FormMethod.Post))
+                                                        {
+                                                            <input type="hidden" id="idProne" name="idProne" value="@idItem">
+                                                            <button class="btn btn-info" type="submit">Shto foto</button>
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                        </div>
+                                    </div>
+
+                                    <br />
+
+                                </div>
+                            </div>
+
+
+
+                        }
+                    </div>
+                </div>
+
+            </div><!--/tab-pane-->
+        </div><!--/tab-content-->
+    </div><!--/col-9-->
+</div><!--/row-->
+
+<script>
+    (function($){
+        function processForm( e ){
+           
+
+            var file_data = $('#file').prop('files')[0];
+            var form_data = new FormData();
+            form_data.append('file', file_data);
+            $.ajax({
+                url: '/Profiles/UploadPicture',   // Url to which the request is send
+                type: "POST",       // Type of request to be send, called as method
+                data: form_data,// Data sent to server, a set of key/value pairs representing form fields and values
+                contentType: false,// The content type used when sending data to the server. Default is: "application/x-www-form-urlencoded"
+                cache: false,// To unable request pages to be cached
+                processData: false,// To send DOMDocument or non processed data file it is set to false (i.e. data should not be in the form of string)
+                success: function (data)  {
+                    if (data.data.status == 'success') {
+                        $("#message").attr('class', 'alert alert-success');
+                    }
+                    else {
+                        $("#message").attr('class', 'alert alert-danger');
+                    }
+
+                    $("#message").html('<h4>' + data.data.message + '</h4>');
+                    $("#message").show();          
+                },
+                error: function (jqXHR, errdata, errorThrown) {
+                    alert(errorThrown);
+                }
+            })
+
+            e.preventDefault();
+        }
+
+        $('#formData').submit(processForm);
+    })(jQuery);
+    
+
+</script>

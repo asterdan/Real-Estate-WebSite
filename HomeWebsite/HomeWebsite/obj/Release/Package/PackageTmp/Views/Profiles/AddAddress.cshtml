@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "AddAddress";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<style>
+    body{padding-top:20px;}
+</style>
+
+@{var items = (List<HomeWebsite.Models.Entities.Qytet>)ViewBag.Cities;
+  var countries = (List<HomeWebsite.Models.Entities.Shtet>)ViewBag.Countries;
+  }
+
+<br />
+<br />
+<br />
+
+@using (Html.BeginForm("InsertAddress","Profiles",FormMethod.Post))
+{
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Please add address information</h3>
+                </div>
+                <div class="panel-body">
+
+                   
+                    <fieldset>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Rruga" name="rrugeTxt" type="text">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Ndertesa" name="nderteseTxt" value="">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Shkalla" name="shkalleTxt" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Apartamenti" name="apartamentTxt" value="">
+                        </div>
+                        <div class="form-group">
+                            <select name="qytetiTxt" class="form-control">
+                                @foreach (var item in items)
+                                {
+                                    <option value="@item.qytetID">@item.qytetEmer</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select name="shtetiTxt" class="form-control">
+                                @foreach (var country in countries)
+                                {
+                                    <option value="@country.shtetID">@country.shtetEmer</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Zip Code" name="ziptTxt" value="">
+                        </div>
+
+
+                        <button id="btnPost" class="btn btn-lg btn-success btn-block" type="submit" >Add</button>
+                    </fieldset>
+                    
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+<script type="text/javascript">
+    $("#btnPost").click(function () {
+        $.post("/Profiles/InsertAddress", $("#formData").serialize(), function (data) {
+            //var message = '<h6>Status : ' + data.status + ' Message : ' + data.message + '</h6>';
+            alert(data.status + " " + data.message);
+        });
+    });
+</script>

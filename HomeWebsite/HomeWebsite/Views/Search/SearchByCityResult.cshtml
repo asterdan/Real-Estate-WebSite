@@ -1,0 +1,149 @@
+﻿@model IEnumerable<HomeWebsite.Models.Entities.Prone>
+
+@{
+    ViewBag.Title = "SearchByCityResult";
+}
+
+<style>
+    .view-group {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.thumbnail
+{
+    margin-bottom: 30px;
+    padding: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.item.list-group-item
+{
+    float: none;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 30px;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0 1rem;
+    border: 0;
+}
+.item.list-group-item .img-event {
+    float: left;
+    width: 25px;
+    height:50px;
+}
+
+.item.list-group-item .list-group-image
+{
+    margin-right: 10px;
+}
+.item.list-group-item .thumbnail
+{
+    margin-bottom: 0px;
+    display: inline-block;
+}
+.item.list-group-item .caption
+{
+    float: left;
+    width: 70%;
+    margin: 0;
+}
+
+.item.list-group-item:before, .item.list-group-item:after
+{
+    display: table;
+    content: " ";
+}
+
+.item.list-group-item:after
+{
+    clear: both;
+}
+</style>
+
+<br />
+
+
+     <br />
+     <div class="container">
+         <div class="row">
+             <div class="col-md-12">
+                 <div class="alert alert-info">
+                     <h4>Rezultate</h4>
+                 </div>
+             </div>
+         </div>
+         <div class="row">
+             @{string tempSrc = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";}
+             @foreach (var item in (List<HomeWebsite.Models.Entities.Prone>)ViewBag.Prones)
+             {
+                 if (item.proneComp.picturePath != null)
+                 {
+                     tempSrc = item.proneComp.picturePath;
+                 }
+                 <div class="col-md-3">
+                     <div class="thumbnail card">
+
+                         <div class="img-event">
+                             <img class="group list-group-image" src="@Url.Content(tempSrc)" alt="" style="width:100%; height:200px;" />
+                         </div>
+                         <br />
+                         <div class="row">
+                             <div class=" col-md-12">
+                                 <table class="table">
+                                     <tr>
+                                         <td>
+                                             <div class="well well-sm"><h4>@item.proneComp.ProneTitull  @item.proneComp.IdProne</h4></div>
+                                         </td>
+                                     </tr>
+                                     <tr>
+                                         <td>
+                                              <p>Cmimi: @item.proneComp.pricePerMonth $   </p> 
+                                         </td>
+                                     </tr>
+                                     <tr>
+                                         <td>
+                                              <p>Siperfaqja: @item.proneComp.ProneSiperfaqe m2 </p> 
+                                         </td>
+                                     </tr>
+                                     <tr>
+                                         <td>
+                                             @using(Html.BeginForm("MoreInfo","ProneInformation",FormMethod.Post))
+                                             {
+                                                 <input type="hidden" name="propertyTxt" value="@item.proneComp.IdProne" />
+                                                 <button class="btn btn-info" type="submit">Shiko me shume</button>
+                                             }
+                                             
+                                         </td>
+                                     </tr>
+                                 </table>
+
+                             </div>
+                         </div>
+
+                         <br />
+
+                     </div>
+                 </div>
+             
+
+
+             }
+         </div>
+</div>
+
+
+
+
+
+
+
+
+

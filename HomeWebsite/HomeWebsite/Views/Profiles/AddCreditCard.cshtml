@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "AddCreditCard";
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<style>
+    body {
+        padding-top: 20px;
+    }
+</style>
+
+@{var items = (List<HomeWebsite.Models.Entities.Qytet>)ViewBag.Cities;
+var countries = (List<HomeWebsite.Models.Entities.Shtet>)ViewBag.Countries;
+}
+
+<br />
+<br />
+<br />
+
+<form id="formData" method="post" action="/Profiles/CreditCardInsertion">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Please add credit card information</h3>
+                    </div>
+                    <div class="panel-body">
+
+
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Card Holder" name="cardHolderTxt" type="text">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Credit Card Number" name="cardNumberTxt" value="">
+                            </div>
+                            <div class="form-group">
+                                Expiration date:
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        
+                                        <select class="form-control" name="monthTxt">
+                                            <option value="01">Jan</option>
+                                            <option value="02">Feb</option>
+                                            <option value="03">Mar</option>
+                                            <option value="04">Apr</option>
+                                            <option value="05">May</option>
+                                            <option value="06">Jun</option>
+                                            <option value="07">Jul</option>
+                                            <option value="08">Aug</option>
+                                            <option value="09">Sep</option>
+                                            <option value="10">Oct</option>
+                                            <option value="11">Nov</option>
+                                            <option value="12">Dec</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="number" class="form-control" placeholder="Year" name="yearTxt" value="">
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+                            <div class="form-group">
+                                <input type="number" class="form-control" placeholder="Security Code" name="securityCodeTxt" value="">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="number" class="form-control" placeholder="Zip Code" name="zipCodeTxt" value="">
+                            </div>
+
+
+                            <button id="btnPost" class="btn btn-lg btn-success btn-block">Add</button>
+                        </fieldset>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+    
+
+
+<div id="message" style="display:none;">
+    <div id="errorMessage" >
+        
+    </div>
+</div>
+
+<script type="text/javascript">
+    var hasEmpty = false;
+    $("#btnPost").click(function () {
+        console.log('here');
+        $('#formData input[type!=submit]').each(function () {
+            if ($(this).val() == '') {
+                hasEmpty = true;
+                return false;
+            }
+        })
+
+        if (hasEmpty == true) {
+            console.log('here');
+            $("#errorMessage").html("<h4>Please fill in all form fields!</h4>");
+            $("#errorMessage").attr('class', 'alert alert-warning');
+            $("#message").show();
+        }
+        else {
+            $.post("/Profiles/CreditCardInsertion", $("#formData").serialize(), function (data) {
+                //var message = '<h6>Status : ' + data.status + ' Message : ' + data.message + '</h6>';
+                alert(data.status + " " + data.message);
+            })
+        }
+    });
+
+
+
+    
+</script>

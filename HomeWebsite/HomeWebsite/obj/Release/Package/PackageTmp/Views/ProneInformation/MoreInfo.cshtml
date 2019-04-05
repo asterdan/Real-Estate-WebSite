@@ -1,0 +1,520 @@
+﻿
+@using HomeWebsite.Models.Entities;
+
+@{
+    ViewBag.Title = "MoreInfo";
+}
+
+@{
+    var item = (ProneFullInformation)ViewBag.Information;
+    
+    
+    
+    }
+
+
+<br />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<style type="text/css">
+    ul > li{margin-right:25px;font-weight:lighter;cursor:pointer}
+li.active{border-bottom:3px solid silver;}
+
+.item-photo{display:flex;justify-content:center;align-items:center;border-right:1px solid #f6f6f6;}
+.menu-items{list-style-type:none;font-size:11px;display:inline-flex;margin-bottom:0;margin-top:20px}
+.btn-success{width:100%;border-radius:0;}
+.section{width:100%;margin-left:-15px;padding:2px;padding-left:15px;padding-right:15px;background:#f8f9f9}
+.title-price{margin-top:30px;margin-bottom:0;color:black}
+.title-attr{margin-top:0;margin-bottom:0;color:black;}
+.btn-minus{cursor:pointer;font-size:7px;display:flex;align-items:center;padding:5px;padding-left:10px;padding-right:10px;border:1px solid gray;border-radius:2px;border-right:0;}
+.btn-plus{cursor:pointer;font-size:7px;display:flex;align-items:center;padding:5px;padding-left:10px;padding-right:10px;border:1px solid gray;border-radius:2px;border-left:0;}
+div.section > div {width:100%;display:inline-flex;}
+div.section > div > input {margin:0;padding-left:5px;font-size:10px;padding-right:5px;max-width:18%;text-align:center;}
+.attr,.attr2{cursor:pointer;margin-right:5px;height:20px;font-size:10px;padding:2px;border:1px solid gray;border-radius:2px;}
+.attr.active,.attr2.active{ border:1px solid orange;}
+
+@@media (max-width: 426px) {
+    .container {margin-top:0px !important;}
+    .container > .row{padding:0 !important;}
+    .container > .row > .col-xs-12.col-sm-5{
+        padding-right:0 ;
+    }
+    .container > .row > .col-xs-12.col-sm-9 > div > p{
+        padding-left:0 !important;
+        padding-right:0 !important;
+    }
+    .container > .row > .col-xs-12.col-sm-9 > div > ul{
+        padding-left:10px !important;
+
+    }
+    .section{width:104%;}
+    .menu-items{padding-left:0;}
+}
+    </style>
+
+@{
+    double latitude = item.componentPosition.latitude;
+    double logitude = item.componentPosition.logitude;
+  }
+<script type="text/javascript">
+    $(document).ready(function () {
+        //-- Click on detail
+        $("ul.menu-items > li").on("click", function () {
+            $("ul.menu-items > li").removeClass("active");
+            $(this).addClass("active");
+        })
+
+        $(".attr,.attr2").on("click", function () {
+            var clase = $(this).attr("class");
+
+            $("." + clase).removeClass("active");
+            $(this).addClass("active");
+        })
+
+        //-- Click on QUANTITY
+        $(".btn-minus").on("click", function () {
+            var now = $(".section > div > input").val();
+            if ($.isNumeric(now)) {
+                if (parseInt(now) - 1 > 0) { now--; }
+                $(".section > div > input").val(now);
+            } else {
+                $(".section > div > input").val("1");
+            }
+            var priceTotal = parseInt($("#totali").html()) - parseInt($("#pricePerMonth").html());
+            $("#totali").val(priceTotal);
+        })
+        $(".btn-plus").on("click", function () {
+            var now = $(".section > div > input").val();
+            if ($.isNumeric(now)) {
+                $(".section > div > input").val(parseInt(now) + 1);
+            } else {
+                $(".section > div > input").val("1");
+            }
+            var priceTotal = parseInt($("#pricePerMonth").html()) * parseInt($(".section > div > input").val());
+            $("#totali").val(priceTotal);
+        })
+
+        $("#btnAdres").click(function(){
+            $("#divAdrese").show();
+            $("#divMap").hide();
+            $("#divPerson").hide();
+            $("#divComments").hide();
+        })
+
+        $("#btnHarte").click(function () {
+            $("#divMap").show();
+            $("#divAdrese").hide();
+            $("#divPerson").hide();
+            $("#divComments").hide();
+        })
+
+        $("#btn-Shites").click(function(){
+            $("#divAdrese").hide();
+            $("#divMap").hide();
+            $("#divPerson").show();
+            $("#divComments").hide();
+        })
+
+        $("#btn-Comments").click(function () {
+            $("#divAdrese").hide();
+            $("#divMap").hide();
+            $("#divPerson").hide();
+            $("#divComments").show();
+        })
+    })
+</script>
+
+
+
+
+
+
+@{string tempSrc = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
+  if (item.component.picturePath != null)
+  {
+      tempSrc = item.component.picturePath;
+  }
+  }
+<div class="container">
+    <div id="message" style="display:none;"></div>
+</div>
+<div class="container">
+    <div class="row">
+        <form id="formData" method="post" action="/Order/OrderProcess">
+            <div class="col-xs-6 item-photo">
+
+
+                <div  id="slider">
+                    <!-- Top part of the slider -->
+                    
+                        <div id="carousel-bounding-box">
+                            <div class="carousel slide" id="myCarousel">
+                                <!-- Carousel items -->
+                                <div class="carousel-inner">
+                                    <div class="active item" data-slide-number="0">
+                                        <img style="width:100%;" src="@Url.Content(tempSrc)" class="img-thumbnail img-responsive" />
+                                    </div>
+                                    
+                                    @{
+                                        
+                                        int i = 1;
+                                        if (ViewBag.Status != "false")
+                                        {
+                                            try
+                                            {
+                                                List<Photo> images = (List<Photo>)ViewBag.Images; 
+                                                    
+                                                foreach (var image in images)
+                                                {
+
+                                                    <div class="item" data-slide-number="@i">
+                                                        <img style="width:100%;" src="@Url.Content(image.profilePicPath)" class="img-thumbnail img-responsive" />
+                                                    </div>
+                                                    i++;
+                                                }
+                                                
+                                            }
+                                            catch(Exception ex)
+                                            {
+                                                <p>Nuk ka album per kete property!</p>
+                                            }
+
+                                        }
+                                    }
+                                        
+                                    
+                                    
+                                </div>
+                                <!-- Carousel nav -->
+                                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                   
+                </div>
+            <div class="col-xs-6" style="border:0px solid gray">
+                <!-- Datos del vendedor y titulo del producto -->
+                <input type="hidden" name="proneId" value="@item.component.IdProne" />
+                <div class="well well-sm"><h3>@item.component.ProneTitull</h3></div>
+
+                <!-- Precios -->
+                <h6 class="title-price"><small>Cmimi per muaj</small></h6>
+                <h3 id="pricePerMonth" name="pricePerMonth" style="margin-top:0px;">@item.component.pricePerMonth $</h3>
+
+                <!-- Detalles especificos del producto -->
+
+                <div class="section" style="padding-bottom:5px;">
+                    <h6 class="title-attr"><small>Kapaciteti</small></h6>
+                    <div>
+                        <div class="attr2">Siperfaqja @item.component.ProneSiperfaqe m2</div>
+                        <div class="attr2">Numri dhomave : @item.component.ProneNumerDhomash</div>
+                        <div class="attr2">Numri banjove : @item.component.ProneNumerBanjo</div>
+                        <div class="attr2">Vleresimi : @item.componentInfo.proneRating</div>
+                    </div>
+                </div>
+                <div class="section" style="padding-bottom:20px;">
+                    <h6 class="title-attr"><small>Sasia e muajve</small></h6>
+                    <div>
+                        <div class="btn-minus"><span class="glyphicon glyphicon-minus"></span></div>
+                        <input value="1" name="sasiaTxt" />
+                        <div class="btn-plus"><span class="glyphicon glyphicon-plus"></span></div>
+                    </div>
+                </div>
+
+                <h6 class="title-price"><small>Total</small></h6>
+                <h3 style="margin-top:0px;"><input class="attr2" id="totali" name="totali" type="text" value="@item.component.pricePerMonth" /> $</h3>
+
+                <!-- Botones de compra -->
+                <div class="section" style="padding-bottom:20px;">
+
+                    <input type="hidden" value="@item.componentPerson.konsumator.IdKonsumator" name="idShites" />
+                    <input type="hidden" value="@item.componentPerson.konsumator.UserName" name="userNameShites" />
+
+                    <button id="btnPost" class="btn btn-success" type="submit" ><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>Porosit</button>
+
+
+                    <h6><a href="#"><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> Agregar a lista de deseos</a></h6>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+
+        <div class="col-xs-12">
+            <ul class="menu-items">
+                <li id="btnAdres" >Adresa</li>
+                <li id="btnHarte" class="active">Vendodhja ne harte</li>
+                <li id="btn-Shites">Pronar</li>
+                <li id="btn-Comments">Comments</li>
+            </ul>
+            <div id="divAdrese" style="width:100%;border-top:1px solid silver;display:none;">
+                <br />
+                <div class="well well-sm"><h5>Te dhena</h5></div>
+                <p style="padding:15px;">
+                    <small>
+                        Stay connected either on the phone or the Web with the Galaxy S4 I337 from Samsung. With 16 GB of memory and a 4G connection, this phone stores precious photos and video and lets you upload them to a cloud or social network at blinding-fast speed. With a 17-hour operating life from one charge, this phone allows you keep in touch even on the go.
+
+                        With its built-in photo editor, the Galaxy S4 allows you to edit photos with the touch of a finger, eliminating extraneous background items. Usable with most carriers, this smartphone is the perfect companion for work or entertainment.
+                    </small>
+                </p>
+                <small>
+                    <ul>
+                        <li>Rruga: @item.componentAdress.rrugeEmer</li>
+                        <li>Numri nderteses: @item.componentAdress.nderteseNumer</li>
+                        <li>Numri shkalles: @item.componentAdress.shkalleNumer</li>
+                        <li>Numri apartamentit: @item.componentAdress.apartamentNumer</li>
+                        <li>Zip code: @item.componentAdress.zipCode</li>
+                        <li>Qyteti: @item.componentCity.qytetEmer</li>
+                    </ul>
+                </small>
+            </div>
+            
+            <div id="divMap" style="width:100%;border-top:1px solid silver;">
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="well well-sm"><h5>Vendodhja ne harte</h5></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="map" style="width: 500px; height: 300px;border-radius:3px;"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Adresa</h4>
+                        <ul>
+                            <li>Rruga: @item.componentAdress.rrugeEmer</li>
+                            <li>Numri nderteses: @item.componentAdress.nderteseNumer</li>
+                            <li>Numri shkalles: @item.componentAdress.shkalleNumer</li>
+                            <li>Numri apartamentit: @item.componentAdress.apartamentNumer</li>
+                            <li>Zip code: @item.componentAdress.zipCode</li>
+                            <li>Qyteti: @item.componentCity.qytetEmer</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                
+                <script>
+                    var latitude = parseFloat("@latitude");
+                    var logitude = parseFloat("@logitude");
+                    console.log(latitude);
+                    console.log(logitude);
+                    // Creating map options
+                    var mapOptions = {
+                        
+                        center: [latitude, logitude],
+                        zoom: 15
+                    }
+
+                    // Creating a map object
+                    var map = new L.map('map', mapOptions);
+                    
+                    // Creating a Layer object
+                    var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+                    
+                    // Adding layer to the map
+                    map.addLayer(layer);
+                    var marker = new L.Marker([parseFloat(latitude),parseFloat(logitude)]);
+                    marker.addTo(map);
+                    
+                </script>
+
+            </div>
+
+            <div id="divPerson" style="width:100%;border-top:1px solid silver;display:none;">
+                <br />
+                <div class="well well-sm"><h5>Pronari</h5></div>
+                <p style="padding:15px;">
+                    <small>
+                        @item.componentPerson.konsumator.KonsumatorPershkrim
+                    </small>
+                </p>
+                <small>
+                    <ul>
+                        <li>Rating: @item.componentPerson.konsumator.KonsumatorRating</li>
+                        <li>Userid: @item.componentPerson.konsumator.UserName</li>
+                        <li>Full name: @item.componentPerson.konsumator.Emer @item.componentPerson.konsumator.Mbiemer</li>
+                        <li>Email: @item.componentPerson.konsumator.Email</li>
+                        <li>Telefon @item.componentPerson.konsumator.Telefon</li>
+                    </ul>
+                </small>
+            </div>
+            <div id="divComments" style="width:100%;border-top:1px solid silver;display:none;">
+                <br />
+                <div class="container">
+                    <div class="col-md-offset-2 col-md-7 text-center">
+                        <div class="well">
+                            @using (Html.BeginForm("PostComment", "ProneInformation", FormMethod.Post,new{@id="commentForm"}))
+                            {
+                                if (Session["Perdorues"] != null)
+                                {
+                                    Konsumator konsumator = (Konsumator)Session["Perdorues"];
+                                    <h4>What is on your mind?</h4>
+                                    <div class="input-group">
+                                        <input type="hidden" id="userId" name="userId" value="@konsumator.IdPerdorues" />
+                                        <input type="hidden" id="propertyId" name="propertyId" value="@item.component.IdProne" />
+                                        <input type="hidden" id="userName" name="userName" value="@konsumator.UserName" />
+                                        <input type="text" id="userComment" name="commentTxt" class="form-control input-sm chat-input" placeholder="Write your message here..." />
+                                        <span class="input-group-btn" onclick="addComment()">
+                                            <button type="submit" id="btnPostComment" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-comment"></span> Add Comment</button>
+                                        </span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <h4>You must be logged in to comment.</h4>
+                                }
+                            }
+                            
+                            <hr data-brackets-id="12673">
+                            <ul data-brackets-id="12674" id="sortable" class="list-unstyled ui-sortable">
+                                @try
+                                {
+                                    List<Comment> comments = (List<Comment>)ViewBag.Comments;
+                                    foreach (var comment in comments)
+                                    {
+                                        <div class="alert alert-default">
+                                            <strong class="pull-left primary-font">@comment.userName</strong>
+                                            <small class="pull-right text-muted">
+
+                                                <span class="glyphicon glyphicon-time"></span>@comment.dateTime
+                                            </small>
+                                            <br />
+                                            <li class="ui-state-default">@comment.comment </li>
+                                            <br />
+                                        </div>
+
+
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    <strong class="pull-left primary-font">James</strong>
+                                    <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>0 mins ago
+                                    </small>
+                                    <br />
+                                    <li class="ui-state-default">No Comments</li>
+
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+</div>     
+
+
+<script>
+
+
+    (function ($) {
+        function processForm(e) {
+            var comment = $('#userComment').val();
+            var datetime = new Date().toLocaleDateString();
+            var userName = $('#userName').val();
+
+            var html = '<div class="alert alert-default"><strong class="pull-left primary-font">'+userName+'</strong>  <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>'+datetime+'</small> <br /><li class="ui-state-default">'+comment+' </li> <br /> </div>'
+            
+            $.ajax({
+                url: '@Url.Action("PostComment")',
+                dataType: 'text',
+                type: 'post',
+                contentType: 'application/x-www-form-urlencoded',
+                data: $(this).serialize(),
+                success: function (data) {
+                    $('#sortable').prepend(html);
+                    
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+
+
+            e.preventDefault();
+        }
+
+        $('#commentForm').submit(processForm);
+    })(jQuery);
+
+
+    function addComment() {
+        var userComment = document.getElementById("userComment").value;
+        document.getElementById("ui-state-default").innerHTML = userComment;
+    }
+
+    jQuery(document).ready(function ($) {
+
+        $('#myCarousel').carousel({
+            interval: 5000
+        });
+
+        //Handles the carousel thumbnails
+        $('[id^=carousel-selector-]').click(function () {
+            var id_selector = $(this).attr("id");
+            try {
+                var id = /-(\d+)$/.exec(id_selector)[1];
+                console.log(id_selector, id);
+                jQuery('#myCarousel').carousel(parseInt(id));
+            } catch (e) {
+                console.log('Regex failed!', e);
+            }
+        });
+        // When the carousel slides, auto update the text
+        $('#myCarousel').on('slid.bs.carousel', function (e) {
+            var id = $('.item.active').data('slide-number');
+            $('#carousel-text').html($('#slide-content-' + id).html());
+        });
+    });
+
+    (function($){
+        function processForm( e ){
+
+            $.ajax({
+                url: '/Order/OrderProcess',
+                dataType: 'text',
+                type: 'post',
+                contentType: 'application/x-www-form-urlencoded',
+                data: $(this).serialize(),
+                success: function (data) {
+                    var object = JSON.parse(data);
+                    if (object.data.status == 'success')
+                    {
+                        $("#message").attr('class', 'alert alert-success');
+
+                    }
+                    else
+                    {
+                        $("#message").attr('class', 'alert alert-danger');
+                    }
+
+                    $("#message").html('<h4>' + object.data.message + '</h4>');
+                    $("#message").show();
+                    $("#btnPost").prop('disabled', true);
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+
+
+            e.preventDefault();
+        }
+
+        $('#formData').submit(processForm);
+    })(jQuery);
+
+</script>

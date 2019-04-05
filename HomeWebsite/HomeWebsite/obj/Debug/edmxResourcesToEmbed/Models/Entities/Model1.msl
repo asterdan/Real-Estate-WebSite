@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HomeRentalDatabaseModelStoreContainer" CdmEntityContainer="HomeRentalDatabaseEntities">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="HomeRentalDatabaseModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="idAdmin" ColumnName="idAdmin" />
+          <ScalarProperty Name="hireDate" ColumnName="hireDate" />
+          <ScalarProperty Name="salary" ColumnName="salary" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="idPerdorues" ColumnName="idPerdorues" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Adrese">
+      <EntityTypeMapping TypeName="HomeRentalDatabaseModel.Adrese">
+        <MappingFragment StoreEntitySet="Adrese">
+          <ScalarProperty Name="adreseID" ColumnName="adreseID" />
+          <ScalarProperty Name="rrugeEmer" ColumnName="rrugeEmer" />
+          <ScalarProperty Name="nderteseNumer" ColumnName="nderteseNumer" />
+          <ScalarProperty Name="shkalleNumer" ColumnName="shkalleNumer" />
+          <ScalarProperty Name="apartamentNumer" ColumnName="apartamentNumer" />
+          <ScalarProperty Name="pozicioniGjeografik" ColumnName="pozicioniGjeografik" />
+          <ScalarProperty Name="idShtet" ColumnName="idShtet" />
+          <ScalarProperty Name="idQytet" ColumnName="idQytet" />
+          <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CreditCardInfoes">
+      <EntityTypeMapping TypeName="HomeRentalDatabaseModel.CreditCardInfo">
+        <MappingFragment StoreEntitySet="CreditCardInfo">
+          <ScalarProperty Name="idCreditCard" ColumnName="idCreditCard" />
+          <ScalarProperty Name="cardHolder" ColumnName="cardHolder" />
+          <ScalarProperty Name="cardNumber" ColumnName="cardNumber" />
+          <ScalarProperty Name="expires" ColumnName="expires" />
+          <ScalarProperty Name="securityCode" ColumnName="securityCode" />
+          <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KategoriPrones">
+      <EntityTypeMapping TypeName="HomeRentalDatabaseModel.KategoriProne">
+        <MappingFragment StoreEntitySet="KategoriProne">
+          <ScalarProperty Name="idKategori" ColumnName="idKategori" />
+          <ScalarProperty Name="kategoriProneEmer" ColumnName="kategoriProneEmer" />
+          <ScalarProperty Name="kategoriPershkrim" ColumnName="kategoriPershkrim" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Konsumators">
+      <EntityTypeMapping TypeName="HomeRentalDatabaseModel.Konsumator">
+        <MappingFragment StoreEntitySet="Konsumator">
+          <ScalarProperty Name="idKonsumator" ColumnName="idKonsumator" />
+          <ScalarProperty Name="creditCardInfo" ColumnName="creditCardInfo" />
+          <ScalarProperty Name="konsumatorRating" ColumnName="konsumatorRating" />
+          <ScalarProperty Name="konsumatorPershkrim" ColumnName="konsumatorPershkrim" />
+          <ScalarProperty Name="idPerdorues" ColumnName="idPerdorues" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Perdorues">
+      <EntityTypeMapping TypeName="HomeRentalDatabaseModel.Perdorue">
+        <MappingFragment StoreEntitySet="Perdorues">
+          <ScalarProperty Name="idPerdorues" ColumnName="idPerdorues" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="perdoruesInfoID" ColumnName="perdoruesInfoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PeroduresInfoes">
+      <EntityTypeMapping TypeName="HomeRentalDatabaseModel.PeroduresInfo">
+        <MappingFragment StoreEntitySet="PeroduresInfo">
+          <ScalarProperty Name="idInfo" ColumnName="idInfo" />
+          <ScalarProperty Name="emerPerdorues" ColumnName="emerPerdorues" />
+          <ScalarProperty Name="mbiemerPerdorues" ColumnName="mbiemerPerdorues" />
+          <ScalarProperty Name="telefonPerdorues" ColumnName="telefonPerdorues" />
+          <ScalarProperty Name="emailPerdorues" ColumnName="emailPerdorues" />
+          <ScalarProperty Name="passwordPerdorues" ColumnName="passwordPerdorues" />
+          <ScalarProperty Name="profilePic" ColumnName="profilePic" />
+          <ScalarProperty Name="adresePerdorues" ColumnName="adresePerdorues" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PozicionGjeografiks">
+      <EntityTypeMapping TypeName="HomeRentalDatabaseModel.PozicionGjeografik">
+        <MappingFragment StoreEntitySet="PozicionGjeografik">
+          <ScalarProperty Name="pozicionID" ColumnName="pozicionID" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="logitude" ColumnName="logitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prones">
+      <EntityTypeMapping TypeName="HomeRentalDatabaseModel.Prone">
+        <MappingFragment StoreEntitySet="Prone">
+          <ScalarProperty Name="idProne" ColumnName="idProne" />
+          <ScalarProperty Name="proneTitull" ColumnName="proneTitull" />
+          <ScalarProperty Name="proneSiperfaqe" ColumnName="proneSiperfaqe" />
+          <ScalarProperty Name="proneNumerDhomash" ColumnName="proneNumerDhomash" />
+          <ScalarProperty Name="proneNumerBanjo" ColumnName="proneNumerBanjo" />
+          <ScalarProperty Name="pronePicture" ColumnName="pronePicture" />
+          <ScalarProperty Name="idProneInfo" ColumnName="idProneInfo" />
+          <ScalarProperty Name="eLire" ColumnName="eLire" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProneInfoes">
+      <EntityTypeMapping TypeName="HomeRentalDatabaseModel.ProneInfo">
+        <MappingFragment StoreEntitySet="ProneInfo">
+          <ScalarProperty Name="idInfo" ColumnName="idInfo" />
+          <ScalarProperty Name="proneRating" ColumnName="proneRating" />
+          <ScalarProperty Name="idAdrese" ColumnName="idAdrese" />
+          <ScalarProperty Name="idKonsumator" ColumnName="idKonsumator" />
+          <ScalarProperty Name="idKategori" ColumnName="idKategori" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PronePhotos">
+      <EntityTypeMapping TypeName="HomeRentalDatabaseModel.PronePhoto">
+        <MappingFragment StoreEntitySet="PronePhotos">
+          <ScalarProperty Name="idPhoto" ColumnName="idPhoto" />
+          <ScalarProperty Name="photoPath" ColumnName="photoPath" />
+          <ScalarProperty Name="idProne" ColumnName="idProne" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Qytetis">
+      <EntityTypeMapping TypeName="HomeRentalDatabaseModel.Qyteti">
+        <MappingFragment StoreEntitySet="Qyteti">
+          <ScalarProperty Name="qytetID" ColumnName="qytetID" />
+          <ScalarProperty Name="qytetEmer" ColumnName="qytetEmer" />
+          <ScalarProperty Name="shtetID" ColumnName="shtetID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rentals">
+      <EntityTypeMapping TypeName="HomeRentalDatabaseModel.Rental">
+        <MappingFragment StoreEntitySet="Rental">
+          <ScalarProperty Name="rentalID" ColumnName="rentalID" />
+          <ScalarProperty Name="rentalCustomer" ColumnName="rentalCustomer" />
+          <ScalarProperty Name="rentalRenter" ColumnName="rentalRenter" />
+          <ScalarProperty Name="rentalDate" ColumnName="rentalDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RentalDetails">
+      <EntityTypeMapping TypeName="HomeRentalDatabaseModel.RentalDetail">
+        <MappingFragment StoreEntitySet="RentalDetails">
+          <ScalarProperty Name="rentalDetailsID" ColumnName="rentalDetailsID" />
+          <ScalarProperty Name="rentalID" ColumnName="rentalID" />
+          <ScalarProperty Name="pricePerMonth" ColumnName="pricePerMonth" />
+          <ScalarProperty Name="proneID" ColumnName="proneID" />
+          <ScalarProperty Name="rentMonthNumber" ColumnName="rentMonthNumber" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="total" ColumnName="total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shtetis">
+      <EntityTypeMapping TypeName="HomeRentalDatabaseModel.Shteti">
+        <MappingFragment StoreEntitySet="Shteti">
+          <ScalarProperty Name="shtetID" ColumnName="shtetID" />
+          <ScalarProperty Name="shtetEmer" ColumnName="shtetEmer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="HomeRentalDatabaseModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

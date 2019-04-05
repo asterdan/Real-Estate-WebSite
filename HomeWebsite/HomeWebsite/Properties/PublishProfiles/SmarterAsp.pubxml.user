@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword />
+    <_PublishTargetUrl>ftp:// ftp-eu.site4now.net/ site1</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>12/31/2018 16:15:19</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>12/31/2018 16:15:26</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>12/31/2018 16:15:26</publishTime>
+    </File>
+    <File Include="bin/HomeWebsite.dll">
+      <publishTime>01/22/2019 22:35:21</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>12/31/2018 16:15:30</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
+      <publishTime>12/31/2018 16:15:30</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
+      <publishTime>12/31/2018 16:15:30</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>12/31/2018 16:15:31</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>12/31/2018 16:15:31</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>12/31/2018 16:15:31</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>12/31/2018 16:15:31</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Facebook.dll">
+      <publishTime>12/31/2018 16:15:31</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Google.dll">
+      <publishTime>12/31/2018 16:15:32</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.MicrosoftAccount.dll">
+      <publishTime>12/31/2018 16:15:32</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
+      <publishTime>12/31/2018 16:15:31</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Twitter.dll">
+      <publishTime>12/31/2018 16:15:32</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>12/31/2018 16:15:18</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>01/05/2019 14:59:21</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>12/31/2018 16:15:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>12/31/2018 16:15:17</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>12/31/2018 16:15:18</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>12/31/2018 16:15:17</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>12/31/2018 16:15:17</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>12/31/2018 16:15:17</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>12/31/2018 16:15:17</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>12/31/2018 16:15:17</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>12/31/2018 16:15:19</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>12/31/2018 16:15:06</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>12/31/2018 16:15:06</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>12/31/2018 16:14:49</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>12/31/2018 16:14:49</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>12/31/2018 16:15:06</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>12/31/2018 16:15:06</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>12/31/2018 16:15:06</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>12/31/2018 16:15:06</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>12/31/2018 16:14:49</publishTime>
+    </File>
+    <File Include="Javascript/dragdropjs.js">
+      <publishTime>01/07/2019 22:19:29</publishTime>
+    </File>
+    <File Include="Javascript/extention/choices.js">
+      <publishTime>01/06/2019 14:05:19</publishTime>
+    </File>
+    <File Include="Javascript/extention/custom-materialize.js">
+      <publishTime>01/06/2019 14:05:19</publishTime>
+    </File>
+    <File Include="Javascript/extention/flatpickr.js">
+      <publishTime>01/06/2019 14:05:19</publishTime>
+    </File>
+    <File Include="Javascript/jsdragdrop.js">
+      <publishTime>01/07/2019 22:49:48</publishTime>
+    </File>
+    <File Include="Javascript/main.js">
+      <publishTime>01/06/2019 14:05:19</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>01/05/2019 14:59:24</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>12/31/2018 16:15:06</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>12/31/2018 16:15:05</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>12/31/2018 16:15:07</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>12/31/2018 16:15:07</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.map">
+      <publishTime>12/31/2018 16:15:07</publishTime>
+    </File>
+    <File Include="Scripts/jquery.filedrop.js">
+      <publishTime>01/02/2019 23:33:18</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>12/31/2018 16:15:21</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>12/31/2018 16:15:21</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>12/31/2018 16:15:21</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>12/31/2018 16:15:21</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>12/31/2018 16:15:19</publishTime>
+    </File>
+    <File Include="Scripts/publishHomeScript.js">
+      <publishTime>01/03/2019 17:50:41</publishTime>
+    </File>
+    <File Include="Scripts/respond.js">
+      <publishTime>12/31/2018 16:15:20</publishTime>
+    </File>
+    <File Include="Scripts/respond.min.js">
+      <publishTime>12/31/2018 16:15:20</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>01/07/2019 22:38:13</publishTime>
+    </File>
+    <File Include="Styles/dragdrop.css">
+      <publishTime>01/07/2019 22:18:57</publishTime>
+    </File>
+    <File Include="Styles/main.css">
+      <publishTime>01/06/2019 14:03:48</publishTime>
+    </File>
+    <File Include="Styles/styles.css">
+      <publishTime>01/06/2019 02:09:15</publishTime>
+    </File>
+    <File Include="Views/Account/ConfirmEmail.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Account/ExternalLoginConfirmation.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Account/ExternalLoginFailure.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Account/ForgotPassword.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Account/ForgotPasswordConfirmation.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Account/Login.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Account/Register.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Account/ResetPassword.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Account/ResetPasswordConfirmation.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Account/SendCode.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Account/VerifyCode.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Album/AddImages.cshtml">
+      <publishTime>01/06/2019 01:43:27</publishTime>
+    </File>
+    <File Include="Views/Album/ImageAdd.cshtml">
+      <publishTime>01/06/2019 02:18:38</publishTime>
+    </File>
+    <File Include="Views/Album/UploadFinish.cshtml">
+      <publishTime>01/06/2019 01:30:37</publishTime>
+    </File>
+    <File Include="Views/Home/About.cshtml">
+      <publishTime>12/31/2018 16:14:49</publishTime>
+    </File>
+    <File Include="Views/Home/Contact.cshtml">
+      <publishTime>12/31/2018 16:14:49</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>01/06/2019 18:22:54</publishTime>
+    </File>
+    <File Include="Views/Login/LoginCompletition.cshtml">
+      <publishTime>01/02/2019 13:46:58</publishTime>
+    </File>
+    <File Include="Views/Login/LoginForm.cshtml">
+      <publishTime>01/06/2019 02:20:19</publishTime>
+    </File>
+    <File Include="Views/Login/NotLogged.cshtml">
+      <publishTime>01/02/2019 14:22:56</publishTime>
+    </File>
+    <File Include="Views/Manage/AddPhoneNumber.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Manage/ChangePassword.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Manage/Index.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Manage/ManageLogins.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Manage/SetPassword.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Manage/VerifyPhoneNumber.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Order/OrderProcess.cshtml">
+      <publishTime>01/05/2019 18:24:38</publishTime>
+    </File>
+    <File Include="Views/Profiles/AddAddress.cshtml">
+      <publishTime>01/04/2019 16:24:15</publishTime>
+    </File>
+    <File Include="Views/Profiles/AddCreditCard.cshtml">
+      <publishTime>01/05/2019 00:41:50</publishTime>
+    </File>
+    <File Include="Views/Profiles/InsertAddress.cshtml">
+      <publishTime>01/04/2019 16:18:56</publishTime>
+    </File>
+    <File Include="Views/Profiles/MyProfile.cshtml">
+      <publishTime>01/05/2019 20:53:34</publishTime>
+    </File>
+    <File Include="Views/Profiles/UploadPicture.cshtml">
+      <publishTime>01/05/2019 22:52:46</publishTime>
+    </File>
+    <File Include="Views/Profiles/UserProfile.cshtml">
+      <publishTime>01/06/2019 01:45:41</publishTime>
+    </File>
+    <File Include="Views/ProneInformation/AddPropertyPicture.cshtml">
+      <publishTime>01/04/2019 21:56:08</publishTime>
+    </File>
+    <File Include="Views/ProneInformation/MoreInfo.cshtml">
+      <publishTime>01/06/2019 18:29:50</publishTime>
+    </File>
+    <File Include="Views/ProneInformation/UploadPicture.cshtml">
+      <publishTime>01/04/2019 18:34:35</publishTime>
+    </File>
+    <File Include="Views/Publish/AddAdress.cshtml">
+      <publishTime>01/01/2019 23:53:30</publishTime>
+    </File>
+    <File Include="Views/Publish/AddInfo.cshtml">
+      <publishTime>01/02/2019 13:00:35</publishTime>
+    </File>
+    <File Include="Views/Publish/AddLocation.cshtml">
+      <publishTime>01/03/2019 12:09:54</publishTime>
+    </File>
+    <File Include="Views/Publish/AddPhoto.cshtml">
+      <publishTime>01/03/2019 12:10:16</publishTime>
+    </File>
+    <File Include="Views/Publish/AddProne.cshtml">
+      <publishTime>01/02/2019 13:11:44</publishTime>
+    </File>
+    <File Include="Views/Publish/AddProneData.cshtml">
+      <publishTime>01/03/2019 20:44:43</publishTime>
+    </File>
+    <File Include="Views/Publish/CompleteProneRegistration.cshtml">
+      <publishTime>01/02/2019 12:58:10</publishTime>
+    </File>
+    <File Include="Views/Publish/PostData.cshtml">
+      <publishTime>01/03/2019 17:16:07</publishTime>
+    </File>
+    <File Include="Views/Register/AddProfilePic.cshtml">
+      <publishTime>01/03/2019 11:43:10</publishTime>
+    </File>
+    <File Include="Views/Register/UserRegisterCompletition.cshtml">
+      <publishTime>01/02/2019 22:27:44</publishTime>
+    </File>
+    <File Include="Views/Register/UserRegistration.cshtml">
+      <publishTime>01/02/2019 23:15:08</publishTime>
+    </File>
+    <File Include="Views/Search/SearchByCityResult.cshtml">
+      <publishTime>01/06/2019 15:09:35</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Shared/Lockout.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>01/06/2019 14:23:25</publishTime>
+    </File>
+    <File Include="Views/Shared/_LoginPartial.cshtml">
+      <publishTime>12/31/2018 16:15:25</publishTime>
+    </File>
+    <File Include="Views/TestImageUpload/AddPhoto.cshtml">
+      <publishTime>01/02/2019 20:38:55</publishTime>
+    </File>
+    <File Include="Views/TestImageUpload/TestDragDrop.cshtml">
+      <publishTime>01/03/2019 00:03:52</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>12/31/2018 16:14:49</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>12/31/2018 16:14:49</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>01/22/2019 22:35:26</publishTime>
+    </File>
+    <File Include="WebImages/Searchs_002.png">
+      <publishTime>01/06/2019 14:10:12</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

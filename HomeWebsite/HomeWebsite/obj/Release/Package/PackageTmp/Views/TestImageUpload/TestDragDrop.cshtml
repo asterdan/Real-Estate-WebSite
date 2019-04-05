@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "TestDragDrop";
+}
+
+<h2>TestDragDrop</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h5>Drop your image here!</h5>
+                </div>
+                <div class="panel-body">
+                    <div id="dropArea">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4>Uploaded files:</h4>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group" id="uploadList"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    #dropArea {
+        margin: 0 auto;
+        height: 100px;
+        background: #F2F2F2;
+        border: 1px solid #ccc;
+        box-shadow: 1px 1px 2px #fff inset, -1px -1px 2px #fff inset;
+        border-radius: 3px/6px;
+    }
+
+    .active-drop {
+        background: #77bafa !important;
+        border: solid 2px blue !important;
+        opacity: .5;
+        color: black !important;
+    }
+</style>
+
+@section Scripts
+{
+    <script src="~/Scripts/jquery.filedrop.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#dropArea').filedrop({
+                url : `@Url.Action("UploadFiles")`,
+                allowedfiletypes : ['image/jpeg','image/png','image/gif'],
+                allowedfileextensions : ['.jpg','.jpeg','.png','.gif'],
+                paramname : 'files',
+                maxfiles : 1,
+                maxfilesize : 10,
+                dragOver : function() {
+                    $('#dropArea').addClass('active-drop');
+                },
+                dragLeave : function() {
+                    $('#dropArea').removeClass('active-drop');
+                },
+                drop: function(){
+                    $('#dropArea').removeClass('active-drop');
+
+                },
+                afterAll: function(e)
+                {
+                    $('#dropArea').html('Image uploaded successfully');
+                },
+                uploadFinished : function(i,file,response,time){
+                    $('#uploadList').append('<li class="list-group-item">'+file.name+'</li>')
+                }
+            })
+        })
+    </script>
+}

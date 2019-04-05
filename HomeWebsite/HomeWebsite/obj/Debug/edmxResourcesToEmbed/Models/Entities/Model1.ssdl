@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HomeRentalDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="idAdmin" />
+    </Key>
+    <Property Name="idAdmin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="hireDate" Type="varchar" MaxLength="10" />
+    <Property Name="salary" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="password" Type="varchar" MaxLength="250" />
+    <Property Name="idPerdorues" Type="int" />
+  </EntityType>
+  <EntityType Name="Adrese">
+    <Key>
+      <PropertyRef Name="adreseID" />
+    </Key>
+    <Property Name="adreseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rrugeEmer" Type="varchar" MaxLength="250" />
+    <Property Name="nderteseNumer" Type="int" />
+    <Property Name="shkalleNumer" Type="int" />
+    <Property Name="apartamentNumer" Type="int" />
+    <Property Name="pozicioniGjeografik" Type="int" />
+    <Property Name="idShtet" Type="int" />
+    <Property Name="idQytet" Type="int" />
+    <Property Name="zipCode" Type="int" />
+  </EntityType>
+  <EntityType Name="CreditCardInfo">
+    <Key>
+      <PropertyRef Name="idCreditCard" />
+    </Key>
+    <Property Name="idCreditCard" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cardHolder" Type="varchar" MaxLength="50" />
+    <Property Name="cardNumber" Type="varchar" MaxLength="20" />
+    <Property Name="expires" Type="date" />
+    <Property Name="securityCode" Type="varchar" MaxLength="4" />
+    <Property Name="zipCode" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="KategoriProne">
+    <Key>
+      <PropertyRef Name="idKategori" />
+    </Key>
+    <Property Name="idKategori" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kategoriProneEmer" Type="varchar" MaxLength="250" />
+    <Property Name="kategoriPershkrim" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Konsumator">
+    <Key>
+      <PropertyRef Name="idKonsumator" />
+    </Key>
+    <Property Name="idKonsumator" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="creditCardInfo" Type="int" />
+    <Property Name="konsumatorRating" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="konsumatorPershkrim" Type="varchar(max)" />
+    <Property Name="idPerdorues" Type="int" />
+  </EntityType>
+  <EntityType Name="Perdorues">
+    <Key>
+      <PropertyRef Name="idPerdorues" />
+    </Key>
+    <Property Name="idPerdorues" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="varchar" MaxLength="250" />
+    <Property Name="perdoruesInfoID" Type="int" />
+  </EntityType>
+  <EntityType Name="PeroduresInfo">
+    <Key>
+      <PropertyRef Name="idInfo" />
+    </Key>
+    <Property Name="idInfo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="emerPerdorues" Type="varchar" MaxLength="250" />
+    <Property Name="mbiemerPerdorues" Type="varchar" MaxLength="250" />
+    <Property Name="telefonPerdorues" Type="varchar" MaxLength="12" />
+    <Property Name="emailPerdorues" Type="varchar" MaxLength="250" />
+    <Property Name="passwordPerdorues" Type="varchar" MaxLength="250" />
+    <Property Name="profilePic" Type="varchar(max)" />
+    <Property Name="adresePerdorues" Type="int" />
+  </EntityType>
+  <EntityType Name="PozicionGjeografik">
+    <Key>
+      <PropertyRef Name="pozicionID" />
+    </Key>
+    <Property Name="pozicionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="latitude" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="logitude" Type="numeric" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="Prone">
+    <Key>
+      <PropertyRef Name="idProne" />
+    </Key>
+    <Property Name="idProne" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proneTitull" Type="varchar" MaxLength="250" />
+    <Property Name="proneSiperfaqe" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="proneNumerDhomash" Type="int" />
+    <Property Name="proneNumerBanjo" Type="int" />
+    <Property Name="pronePicture" Type="varchar" MaxLength="250" />
+    <Property Name="idProneInfo" Type="int" />
+    <Property Name="eLire" Type="bit" />
+  </EntityType>
+  <EntityType Name="ProneInfo">
+    <Key>
+      <PropertyRef Name="idInfo" />
+    </Key>
+    <Property Name="idInfo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proneRating" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="idAdrese" Type="int" />
+    <Property Name="idKonsumator" Type="int" />
+    <Property Name="idKategori" Type="int" />
+  </EntityType>
+  <EntityType Name="PronePhotos">
+    <Key>
+      <PropertyRef Name="idPhoto" />
+    </Key>
+    <Property Name="idPhoto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="photoPath" Type="varchar" MaxLength="250" />
+    <Property Name="idProne" Type="int" />
+  </EntityType>
+  <EntityType Name="Qyteti">
+    <Key>
+      <PropertyRef Name="qytetID" />
+    </Key>
+    <Property Name="qytetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="qytetEmer" Type="varchar" MaxLength="250" />
+    <Property Name="shtetID" Type="int" />
+  </EntityType>
+  <EntityType Name="Rental">
+    <Key>
+      <PropertyRef Name="rentalID" />
+    </Key>
+    <Property Name="rentalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rentalCustomer" Type="int" />
+    <Property Name="rentalRenter" Type="int" />
+    <Property Name="rentalDate" Type="date" />
+  </EntityType>
+  <EntityType Name="RentalDetails">
+    <Key>
+      <PropertyRef Name="rentalDetailsID" />
+    </Key>
+    <Property Name="rentalDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rentalID" Type="int" />
+    <Property Name="pricePerMonth" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="proneID" Type="int" />
+    <Property Name="rentMonthNumber" Type="int" />
+    <Property Name="startDate" Type="date" />
+    <Property Name="endDate" Type="date" />
+    <Property Name="description" Type="varchar(max)" />
+    <Property Name="total" Type="numeric" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="Shteti">
+    <Key>
+      <PropertyRef Name="shtetID" />
+    </Key>
+    <Property Name="shtetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="shtetEmer" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK__Admin__idPerdoru__34C8D9D1">
+    <End Role="Perdorues" Type="Self.Perdorues" Multiplicity="0..1" />
+    <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Perdorues">
+        <PropertyRef Name="idPerdorues" />
+      </Principal>
+      <Dependent Role="Admin">
+        <PropertyRef Name="idPerdorues" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Adrese__idQytet__267ABA7A">
+    <End Role="Qyteti" Type="Self.Qyteti" Multiplicity="0..1" />
+    <End Role="Adrese" Type="Self.Adrese" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Qyteti">
+        <PropertyRef Name="qytetID" />
+      </Principal>
+      <Dependent Role="Adrese">
+        <PropertyRef Name="idQytet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Adrese__idShtet__25869641">
+    <End Role="Shteti" Type="Self.Shteti" Multiplicity="0..1" />
+    <End Role="Adrese" Type="Self.Adrese" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shteti">
+        <PropertyRef Name="shtetID" />
+      </Principal>
+      <Dependent Role="Adrese">
+        <PropertyRef Name="idShtet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Adrese__pozicion__24927208">
+    <End Role="PozicionGjeografik" Type="Self.PozicionGjeografik" Multiplicity="0..1" />
+    <End Role="Adrese" Type="Self.Adrese" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PozicionGjeografik">
+        <PropertyRef Name="pozicionID" />
+      </Principal>
+      <Dependent Role="Adrese">
+        <PropertyRef Name="pozicioniGjeografik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Konsumato__credi__3C69FB99">
+    <End Role="CreditCardInfo" Type="Self.CreditCardInfo" Multiplicity="0..1" />
+    <End Role="Konsumator" Type="Self.Konsumator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CreditCardInfo">
+        <PropertyRef Name="idCreditCard" />
+      </Principal>
+      <Dependent Role="Konsumator">
+        <PropertyRef Name="creditCardInfo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Konsumato__idPer__3D5E1FD2">
+    <End Role="Perdorues" Type="Self.Perdorues" Multiplicity="0..1" />
+    <End Role="Konsumator" Type="Self.Konsumator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Perdorues">
+        <PropertyRef Name="idPerdorues" />
+      </Principal>
+      <Dependent Role="Konsumator">
+        <PropertyRef Name="idPerdorues" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Perdorues__perdo__31EC6D26">
+    <End Role="PeroduresInfo" Type="Self.PeroduresInfo" Multiplicity="0..1" />
+    <End Role="Perdorues" Type="Self.Perdorues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PeroduresInfo">
+        <PropertyRef Name="idInfo" />
+      </Principal>
+      <Dependent Role="Perdorues">
+        <PropertyRef Name="perdoruesInfoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Perodures__adres__2F10007B">
+    <End Role="Adrese" Type="Self.Adrese" Multiplicity="0..1" />
+    <End Role="PeroduresInfo" Type="Self.PeroduresInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adrese">
+        <PropertyRef Name="adreseID" />
+      </Principal>
+      <Dependent Role="PeroduresInfo">
+        <PropertyRef Name="adresePerdorues" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Prone__idProneIn__44FF419A">
+    <End Role="ProneInfo" Type="Self.ProneInfo" Multiplicity="0..1" />
+    <End Role="Prone" Type="Self.Prone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProneInfo">
+        <PropertyRef Name="idInfo" />
+      </Principal>
+      <Dependent Role="Prone">
+        <PropertyRef Name="idProneInfo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProneInfo__idAdr__403A8C7D">
+    <End Role="Adrese" Type="Self.Adrese" Multiplicity="0..1" />
+    <End Role="ProneInfo" Type="Self.ProneInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adrese">
+        <PropertyRef Name="adreseID" />
+      </Principal>
+      <Dependent Role="ProneInfo">
+        <PropertyRef Name="idAdrese" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProneInfo__idKat__4222D4EF">
+    <End Role="KategoriProne" Type="Self.KategoriProne" Multiplicity="0..1" />
+    <End Role="ProneInfo" Type="Self.ProneInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KategoriProne">
+        <PropertyRef Name="idKategori" />
+      </Principal>
+      <Dependent Role="ProneInfo">
+        <PropertyRef Name="idKategori" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProneInfo__idKon__412EB0B6">
+    <End Role="Konsumator" Type="Self.Konsumator" Multiplicity="0..1" />
+    <End Role="ProneInfo" Type="Self.ProneInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Konsumator">
+        <PropertyRef Name="idKonsumator" />
+      </Principal>
+      <Dependent Role="ProneInfo">
+        <PropertyRef Name="idKonsumator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PronePhot__idPro__47DBAE45">
+    <End Role="Prone" Type="Self.Prone" Multiplicity="0..1" />
+    <End Role="PronePhotos" Type="Self.PronePhotos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prone">
+        <PropertyRef Name="idProne" />
+      </Principal>
+      <Dependent Role="PronePhotos">
+        <PropertyRef Name="idProne" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Qyteti__shtetID__15502E78">
+    <End Role="Shteti" Type="Self.Shteti" Multiplicity="0..1" />
+    <End Role="Qyteti" Type="Self.Qyteti" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shteti">
+        <PropertyRef Name="shtetID" />
+      </Principal>
+      <Dependent Role="Qyteti">
+        <PropertyRef Name="shtetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rental__rentalCu__4AB81AF0">
+    <End Role="Konsumator" Type="Self.Konsumator" Multiplicity="0..1" />
+    <End Role="Rental" Type="Self.Rental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Konsumator">
+        <PropertyRef Name="idKonsumator" />
+      </Principal>
+      <Dependent Role="Rental">
+        <PropertyRef Name="rentalCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rental__rentalRe__4BAC3F29">
+    <End Role="Konsumator" Type="Self.Konsumator" Multiplicity="0..1" />
+    <End Role="Rental" Type="Self.Rental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Konsumator">
+        <PropertyRef Name="idKonsumator" />
+      </Principal>
+      <Dependent Role="Rental">
+        <PropertyRef Name="rentalRenter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RentalDet__prone__5070F446">
+    <End Role="Prone" Type="Self.Prone" Multiplicity="0..1" />
+    <End Role="RentalDetails" Type="Self.RentalDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prone">
+        <PropertyRef Name="idProne" />
+      </Principal>
+      <Dependent Role="RentalDetails">
+        <PropertyRef Name="proneID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RentalDet__renta__4F7CD00D">
+    <End Role="Rental" Type="Self.Rental" Multiplicity="0..1" />
+    <End Role="RentalDetails" Type="Self.RentalDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rental">
+        <PropertyRef Name="rentalID" />
+      </Principal>
+      <Dependent Role="RentalDetails">
+        <PropertyRef Name="rentalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HomeRentalDatabaseModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Adrese" EntityType="Self.Adrese" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CreditCardInfo" EntityType="Self.CreditCardInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KategoriProne" EntityType="Self.KategoriProne" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Konsumator" EntityType="Self.Konsumator" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Perdorues" EntityType="Self.Perdorues" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PeroduresInfo" EntityType="Self.PeroduresInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PozicionGjeografik" EntityType="Self.PozicionGjeografik" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prone" EntityType="Self.Prone" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProneInfo" EntityType="Self.ProneInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PronePhotos" EntityType="Self.PronePhotos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Qyteti" EntityType="Self.Qyteti" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rental" EntityType="Self.Rental" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RentalDetails" EntityType="Self.RentalDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shteti" EntityType="Self.Shteti" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Admin__idPerdoru__34C8D9D1" Association="Self.FK__Admin__idPerdoru__34C8D9D1">
+      <End Role="Perdorues" EntitySet="Perdorues" />
+      <End Role="Admin" EntitySet="Admin" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Adrese__idQytet__267ABA7A" Association="Self.FK__Adrese__idQytet__267ABA7A">
+      <End Role="Qyteti" EntitySet="Qyteti" />
+      <End Role="Adrese" EntitySet="Adrese" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Adrese__idShtet__25869641" Association="Self.FK__Adrese__idShtet__25869641">
+      <End Role="Shteti" EntitySet="Shteti" />
+      <End Role="Adrese" EntitySet="Adrese" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Adrese__pozicion__24927208" Association="Self.FK__Adrese__pozicion__24927208">
+      <End Role="PozicionGjeografik" EntitySet="PozicionGjeografik" />
+      <End Role="Adrese" EntitySet="Adrese" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Konsumato__credi__3C69FB99" Association="Self.FK__Konsumato__credi__3C69FB99">
+      <End Role="CreditCardInfo" EntitySet="CreditCardInfo" />
+      <End Role="Konsumator" EntitySet="Konsumator" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Konsumato__idPer__3D5E1FD2" Association="Self.FK__Konsumato__idPer__3D5E1FD2">
+      <End Role="Perdorues" EntitySet="Perdorues" />
+      <End Role="Konsumator" EntitySet="Konsumator" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Perdorues__perdo__31EC6D26" Association="Self.FK__Perdorues__perdo__31EC6D26">
+      <End Role="PeroduresInfo" EntitySet="PeroduresInfo" />
+      <End Role="Perdorues" EntitySet="Perdorues" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Perodures__adres__2F10007B" Association="Self.FK__Perodures__adres__2F10007B">
+      <End Role="Adrese" EntitySet="Adrese" />
+      <End Role="PeroduresInfo" EntitySet="PeroduresInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Prone__idProneIn__44FF419A" Association="Self.FK__Prone__idProneIn__44FF419A">
+      <End Role="ProneInfo" EntitySet="ProneInfo" />
+      <End Role="Prone" EntitySet="Prone" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProneInfo__idAdr__403A8C7D" Association="Self.FK__ProneInfo__idAdr__403A8C7D">
+      <End Role="Adrese" EntitySet="Adrese" />
+      <End Role="ProneInfo" EntitySet="ProneInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProneInfo__idKat__4222D4EF" Association="Self.FK__ProneInfo__idKat__4222D4EF">
+      <End Role="KategoriProne" EntitySet="KategoriProne" />
+      <End Role="ProneInfo" EntitySet="ProneInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProneInfo__idKon__412EB0B6" Association="Self.FK__ProneInfo__idKon__412EB0B6">
+      <End Role="Konsumator" EntitySet="Konsumator" />
+      <End Role="ProneInfo" EntitySet="ProneInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PronePhot__idPro__47DBAE45" Association="Self.FK__PronePhot__idPro__47DBAE45">
+      <End Role="Prone" EntitySet="Prone" />
+      <End Role="PronePhotos" EntitySet="PronePhotos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Qyteti__shtetID__15502E78" Association="Self.FK__Qyteti__shtetID__15502E78">
+      <End Role="Shteti" EntitySet="Shteti" />
+      <End Role="Qyteti" EntitySet="Qyteti" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rental__rentalCu__4AB81AF0" Association="Self.FK__Rental__rentalCu__4AB81AF0">
+      <End Role="Konsumator" EntitySet="Konsumator" />
+      <End Role="Rental" EntitySet="Rental" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rental__rentalRe__4BAC3F29" Association="Self.FK__Rental__rentalRe__4BAC3F29">
+      <End Role="Konsumator" EntitySet="Konsumator" />
+      <End Role="Rental" EntitySet="Rental" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RentalDet__prone__5070F446" Association="Self.FK__RentalDet__prone__5070F446">
+      <End Role="Prone" EntitySet="Prone" />
+      <End Role="RentalDetails" EntitySet="RentalDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RentalDet__renta__4F7CD00D" Association="Self.FK__RentalDet__renta__4F7CD00D">
+      <End Role="Rental" EntitySet="Rental" />
+      <End Role="RentalDetails" EntitySet="RentalDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

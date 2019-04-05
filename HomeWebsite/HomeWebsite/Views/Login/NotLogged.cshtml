@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "NotLogged";
+}
+
+<h2>NotLogged</h2>
+
+<h5>Sorry you must be logged in to complete this process!</h5>
+
+<h6>@ViewBag.PreviousUrl</h6>
+<h5>@Html.ActionLink("Login", "Login", "Login")</h5>

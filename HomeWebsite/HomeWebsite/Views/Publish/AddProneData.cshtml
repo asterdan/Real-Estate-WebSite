@@ -1,0 +1,467 @@
+﻿
+@{
+    ViewBag.Title = "AddProneData";
+}
+
+
+<h4>Add property</h4>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form id="formData" method="post" action="/Publish/PostData">
+                <div id="form1" display="true">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            AddLocation
+                        </div>
+                        <div class="panel-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div id="map" style="width: 500px; height: 300px;border-radius:3px;"></div>
+                                        <script>
+
+                                            // Creating map options
+                                            var mapOptions = {
+                                                center: [41.328211, 19.818304],
+                                                zoom: 7
+                                            }
+
+                                            // Creating a map object
+                                            var map = new L.map('map', mapOptions);
+
+                                            // Creating a Layer object
+                                            var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+
+                                            // Adding layer to the map
+                                            map.addLayer(layer);
+                                            var marker;
+                                            map.on("click", function (e) {
+                                                if (marker) {
+                                                    map.removeLayer(marker);
+                                                    marker = false;
+                                                }
+                                                else {
+                                                    marker = new L.Marker([e.latlng.lat, e.latlng.lng]).addTo(map).on("click", function (e) {
+                                                        map.removeLayer(e.target);
+                                                        document.getElementById("logitude").value = "";
+                                                        document.getElementById("latitude").value = "";
+                                                    });
+                                                    document.getElementById("logitude").value = e.latlng.lng;
+                                                    document.getElementById("latitude").value = e.latlng.lat;
+                                                }
+                                            });
+
+                                        </script>
+
+
+
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="form-horizontal">
+                                            <h4>PozicionGjeografik</h4>
+                                            <hr />
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">Latitude:</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="latitude" id="latitude" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">logitude</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="logitude" id="logitude" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <button type="button" class="btn btn-primary" id="locationFormButton">Continue</button>
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="form3" style="display:none;">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Add address
+                        </div>
+                        <div class="panel-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-offset-2 col-md-8">
+                                        <div class="form-horizontal">
+                                            <hr />
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">Emri rruges:</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="rrugeEmerTxt" id="rrugeEmerTxt" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">Numer ndertese:</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="nderteseNumeTxt" id="nderteseNumerTxt" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">Numer shkalle:</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="shkalleNumerTxt" id="shkalleNumerTxt" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">Numer apartamenti:</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="apartamentNumerTxt" id="apartamentNumerTxt" class="form-control" />
+
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">Shteti: </label>
+                                                <div class="col-md-10">
+                                                    <select name="shtetSelect">
+                                                        @foreach (var item in ViewBag.Countries)
+                                                        {
+                                                            <option value="@item.shtetID">@item.shtetEmer</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">Qyteti: </label>
+                                                <div class="col-md-10">
+                                                    <select name="qytetSelect">
+                                                        @foreach (var item in ViewBag.Cities)
+                                                        {
+                                                            <option value="@item.qytetID">@item.qytetEmer</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">Zip code:</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="zipCodeTxt" id="zipCodeTxt" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <button type="button" class="btn btn-primary" id="formAddressButton">Continue</button>
+                                                    <button type="button" class="btn btn-primary" id="backformAddressButton">Back</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="form4" style="display:none;">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Add Property information
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-offset-2">
+                                    <div class="form-horizontal">
+                                        <h4>ProneInfo</h4>
+                                        <hr />
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Vleresimi prones: </label>
+                                            <div class="col-md-10">
+                                                <input type="text" name="ratingTxt" id="ratingTxt" class="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Kategoria: </label>
+                                            <div class="col-md-10">
+                                                <select name="selectCategory" id="selectCategory">
+                                                    @foreach (var item in ViewBag.Categories)
+                                                    {
+                                                        <option value="@item.idKategori">@item.kategoriProneEmer</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <button type="button" class="btn btn-primary" id="formInfoButton">Continue</button>
+
+                                                <button type="button" class="btn btn-primary" id="backformInfoButton">Back</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="form5" style="display:none;">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Add Main Property Information
+                        </div>
+                        <div class="panel-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-offset-2 col-md-8">
+                                        <div class="form-horizontal">
+
+                                            <hr />
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">Titull prone:</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="proneTitullTxt" id="proneTitullTxt" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">Siperfaqja:</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="proneSiperfaqeTxt" id="proneSiperfaqeTxt" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">Numer dhomash:</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="proneNumerDhomashTxt" id="proneNumerDhomashTxt" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">Numer banjo:</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="proneNumerBanjoTxt" id="proneNumerBanjoTxt" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">Cmim per muaj:</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="cmimPerMuajTxt" id="cmimPerMuajTxt" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">E lire:</label>
+                                                <div class="col-md-10">
+                                                    <select name="elireSelect">
+                                                        <option value="0">E lire</option>
+                                                        <option value="1">E zene</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <button type="button" id="btnFormProneContinue" class="btn btn-info btn-lg">Continue</button>
+                                                    <button type="button" class="btn btn-primary" id="backformProneButton">Back</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="form6" style="display:none;">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+
+                        </div>
+                        <div class="panel-body">
+                            <p>Do you want to upload this property?</p>
+                            <br />
+                            <p>Click yes to continue!</p> &nbsp; <p>Click no to go to homepage!</p>
+                        </div>
+                        <div class="panel-footer">
+                            <button type="button" id="btnPost" class="btn btn-default">Yes</button>
+                            <button type="button" id="btnCancel" class="btn btn-default">No</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="form7" style="display:none;">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Property insert completition
+                        </div>
+                        <div id="divMessage" class="panel-body">
+
+                        </div>
+                        <div class="panel-footer">
+
+                            <button type="button" id="btnGoHome" class="btn btn-default">Go to home</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts
+{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+
+        
+        $("#locationFormButton").click(function () {
+            if ($("#latitude").val() == '' || $("#logitude").val() == '')
+            {
+                alert("Please select location before continuing!");
+            }
+            else
+            {
+                $("#form1").hide();
+                $("#form3").show();
+            }
+            
+        });
+
+        $("#formAddressButton").click(function () {
+            var hasEmpty = false;
+            $('#form3 input[type!=submit]').each(function () {
+                if ($(this).val() == '') {
+                    hasEmpty = true;
+                    return false;
+                }
+            });
+            if (hasEmpty == true) {
+                alert('Please fill in all the fields before continuing!');
+            }
+            else {
+                $("#form3").hide();
+                $("#form4").show();
+            }
+        });
+
+        $("#backformAddressButton").click(function () {
+            $("#form3").hide();
+            $("#form1").show();
+        });
+
+        $("#formInfoButton").click(function () {
+            var hasEmpty = false;
+            $('#form4 input[type!=submit]').each(function () {
+                if ($(this).val() == '') {
+                    hasEmpty = true;
+                    return false;
+                }
+            });
+            if (hasEmpty == true) {
+                alert('Please fill in all the fields before continuing!');
+            }
+            else {
+                $("#form4").hide();
+                $("#form5").show();
+            }
+        });
+
+        $("#backformInfoButton").click(function () {
+            $("#form4").hide();
+            $("#form3").show();
+        });
+
+        $("#formProneButton").click(function () {
+            var hasEmpty = false;
+            $('#form4 input[type!=submit]').each(function () {
+                if ($(this).val() == '') {
+                    hasEmpty = true;
+                    return false;
+                }
+            });
+            if (hasEmpty == true) {
+                alert('Please fill in all the fields before continuing!');
+            }
+            else {
+                $("#form4").hide();
+                $("#form5").show();
+            }
+        });
+
+        $("#backformProneButton").click(function () {
+            $("#form5").hide();
+            $("#form4").show();
+        });
+
+        $("#btnFormProneContinue").click(function () {
+            var hasEmpty = false;
+            $('#form5 input[type!=submit]').each(function () {
+                if ($(this).val() == '') {
+                    hasEmpty = true;
+                    return false;
+                }
+            });
+            if (hasEmpty == true) {
+                alert('Please fill in all the fields before continuing!');
+            }
+            else {
+                $("#form5").hide();
+                $("#form6").show();
+            }
+        });
+
+        $("#btnCancel").click(function () {
+            window.location.href = "@Url.Action("Index", "Home")";
+        });
+
+        $("#btnGoHome").click(function () {
+            window.location.href = "@Url.Action("Index", "Home")";
+        });
+
+        $("#btnPost").click(function () {
+            $.post("/Publish/PostData", $("#formData").serialize(), function (data) {
+                $("#form6").hide();
+                var message = '<h6>Status : ' + data.status + ' Message : ' + data.message + '</h6>';
+                $("#divMessage").html(message);
+                $("#form7").show();
+                
+            });
+        });
+    </script>
+    
+}

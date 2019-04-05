@@ -1,0 +1,102 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.filedrop.js"></script>
+    <title>AddImages</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <!-- Custom styles -->
+    
+    <link rel="stylesheet" href="~/Styles/styles.css" />
+    <style>
+        #dropZone
+        {
+            background:#b5b5b5;
+            border:1px dashed black;
+            height:50px;
+            text-align:center;
+            color:#fff;
+        }
+        .active-drop
+        {
+            background:#77bafa;
+            border:solid 2px blue !important;
+            opacity:.5;
+            color:black !important;
+        }
+    </style>
+    
+    <script type="text/javascript">
+        $(function () {
+            $('#dropZone').filedrop({
+                url: '@Url.Action("UploadFinish")',
+                allowedfiletypes: ['image/jpeg', 'image/png', 'image/gif'],
+                allowedfileextensions: ['.jpg', '.jpeg', '.png', '.gif'],
+                paramname: 'files',
+                maxfiles: 5,
+                maxfilesize: 5,
+                dragOver: function () {
+                    $('#dropZone').addClass('active-drop');
+
+                },
+                dragLeave: function () {
+                    $('#dropZone').removeClass('active-drop');
+                },
+                drop: function () {
+                    $('#dropZone').removeClass('active-drop');
+                },
+                afterAll: function (e) {
+                    $('#dropZone').html('files uploaded successfully');
+                },
+                uploadFinished: function (i, file, response, time) {
+                    $('#uploadedFiles').append('<li class="list-group-item">' + file.name + '</li>');
+                }
+            });
+        });
+
+    </script>
+</head>
+<body>
+
+    <div id="dropZone">Drag and drop your files here</div>
+    <ul class="list-group" id="uploadedFiles"></ul>
+
+    <div> 
+        <div class="container">
+            <div id="message" class="alert alert-success">
+
+            </div>
+        </div>
+
+
+        <br />
+    </div>
+
+    @section Scripts{
+
+
+    
+    }
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+

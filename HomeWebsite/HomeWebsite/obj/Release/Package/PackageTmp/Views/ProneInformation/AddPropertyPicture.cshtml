@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "AddPropertyPicture";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<style>
+    
+.colorBox>div
+{
+    width:30px;
+    height:30px;
+    background:url(/pics/color.png)
+    
+}
+
+    #contentWrapper{
+        background:#fff;
+        padding:10px 10px 0;
+        box-shadow:3px 2px 5px rgba(0,0,0,.3);
+        margin:20px 0}
+        
+
+.btn-gray{
+    background-color:#ccc;
+    background-image:-moz-linear-gradient(#f4f4f4,#bcbcbc);
+    background-image:-webkit-linear-gradient(#f4f4f4,#bcbcbc);
+    background-image:-ms-linear-gradient(#f4f4f4,#bcbcbc);
+    border-color:#aaa;
+    color:#000}
+    
+    
+.btn-file{
+    position:relative
+}
+
+
+.btn-file input[type=file]{
+    position:absolute;
+    top:0;
+    right:0;
+    min-width:100%;
+    min-height:100%;
+    font-size:999px;
+    text-align:right;
+    filter:alpha(opacity=0);
+    opacity:0;
+    cursor:inherit;
+    display:block}input[readonly]{background-color:#fff!important;cursor:text!important}
+
+
+
+</style>
+
+<br />
+<br />
+
+
+<div class="container-fluid">
+    <div style="min-height:60px;padding:12px 0">
+
+        <div id="contentWrapper">
+           
+
+            <div class="row">
+                <div class="col-sm-7 col-xs-12">
+                    <form role="form" id="formData" method="post" enctype="multipart/form-data" action="/ProneInformation/UploadPicture" >
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-btn">
+                                <span class="btn btn-gray btn-file">
+                                    Browse… <input type="file" name="file" accept="image/*">
+                                </span>
+                            </span>
+                            <input type="text" class="form-control" placeholder="Choose file" readonly>
+                            <span class="input-group-btn">
+                                <button id="btnPost" class="btn btn-gray" type="submit">Ok</button>
+                            </span>
+                        </div>
+                        <br />
+                        <br />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divmessage" style="display:none;">
+    <div class="container">
+        <div class="well well-sm">
+            <div id="message"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $("#btnPost").click(function () {
+        $.post("/ProneInformation/UploadPicture", $("#formData").serialize(), function (data) {
+            var message = "<h4>" + data.status + "  " + data.message + "</h4>";
+            $("#message").html(message);
+            $("#divmessage").show();
+        })
+    })
+
+
+   
+
+</script>

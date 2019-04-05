@@ -1,0 +1,139 @@
+﻿@model HomeWebsite.Models.Entities.Search
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <!------ Include the above in your HEAD tag ---------->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    
+
+    <script>
+        $(document).ready(function () {
+            //Handles menu drop down
+            $('.dropdown-menu').find('form').click(function (e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://www.jquery2dotnet.com">Brand</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Search", "Index", "Home")</li>
+                        <li class="divider"></li>
+                        <li>@Html.ActionLink("Publish", "AddProneData", "Publish")</li>
+                        <li>@Html.ActionLink("My Profile", "UserProfile", "Profiles")</li>
+                        
+                    </ul>
+                </li>
+            </ul>
+            @using (Html.BeginForm("SearchByCityResult","Search",FormMethod.Post,new {@class="navbar-form navbar-left"}))
+{
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+                
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.Qyteti, new { htmlAttributes = new { @class = "form-control",@type="search",@placeholder="Enter city" } })
+                        @Html.ValidationMessageFor(model => model.Qyteti, "", new { @class = "text-danger" })
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                    }
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                    <li>@Html.ActionLink("Sing Up", "UserRegistration", "Register")</li></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+                        <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form class="form" role="form" method="post" action="/Login/LoginCompletition" accept-charset="UTF-8" id="login-nav">
+                                            <div class="form-group">
+                                                <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                                <input type="email" class="form-control" name="Email" id="exampleInputEmail2" placeholder="Email address" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                                <input type="password" class="form-control" name="Password" id="exampleInputPassword2" placeholder="Password" required>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox"> Remember me
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-success btn-block">Sign in</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <input class="btn btn-primary btn-block" type="button" id="sign-in-google" value="Sign In with Google">
+                                <input class="btn btn-primary btn-block" type="button" id="sign-in-twitter" value="Sign In with Twitter">
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                </div>
+                    <!-- /.navbar-collapse -->
+            </nav>
+
+
+
+            <!------ Include the above in your HEAD tag ---------->
+
+
+
+
+
+                <div class="container body-content">
+                    @RenderBody()
+                    <hr />
+                    <footer>
+                        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                    </footer>
+                </div>
+    @Scripts.Render("~/bundles/jquery")
+    
+    @RenderSection("scripts", required: false)
+            </body>
+</html>

@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "ImageAdd";
+}
+
+
+<h4>Shto imazhe per pronen</h4>
+<!--<div id="dropZone">Drag and drop your files here</div>-->
+
+
+<!-- Our markup, the important part here! -->
+<div class="jumbotron">
+
+            <div id="dropZone" class="dm-uploader p-5" style="height:150px;width:50%;position:relative;right:-250px;">
+                <h3 class="mb-5 mt-5 text-muted">Drag &amp; drop files here</h3>
+
+            </div><!-- /uploader -->
+        </div>
+
+    
+
+</div>
+
+<ul class="list-group" id="uploadedFiles"></ul>
+
+<div class="container">
+    <div id="message" style="display:none;">
+
+    </div>
+</div>
+
+
+<style>
+    
+
+    .active-drop {
+        background: #77bafa;
+        border: solid 2px blue !important;
+        opacity: .5;
+        color: black !important;
+    }
+</style>
+@section Scripts
+{
+<link href="~/Styles/styles.css" rel="stylesheet">
+<script src="~/Scripts/jquery.filedrop.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#dropZone').filedrop({
+                url: '@Url.Action("UploadFinish")',
+                allowedfiletypes: ['image/jpeg', 'image/png', 'image/gif'],
+                allowedfileextensions: ['.jpg', '.jpeg', '.png', '.gif'],
+                paramname: 'files',
+                maxfiles: 5,
+                maxfilesize: 5,
+                dragOver: function () {
+                    $('#dropZone').addClass('active-drop');
+
+                },
+                dragLeave: function () {
+                    $('#dropZone').removeClass('active-drop');
+                },
+                drop: function () {
+                    $('#dropZone').removeClass('active-drop');
+                },
+                afterAll: function (e) {
+                    $('#dropZone').html('files uploaded successfully');
+                },
+                uploadFinished: function (i, file, response, time) {
+                    $('#uploadedFiles').append('<li class="list-group-item">' + file.name + '</li>');
+                    if(response.data.status=='success')
+                    {
+                        $('#message').attr('class', 'alert alert-success');
+                    }
+                    else
+                    {
+                        $('#message').attr('class', 'alert alert-danger');
+
+                    }
+                    $('#message').html(response.data.message);
+                    $('#message').show();
+                }
+            });
+        });
+    </script>
+    
+}
+
+
